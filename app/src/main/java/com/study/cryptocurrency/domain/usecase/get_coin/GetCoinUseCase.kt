@@ -11,11 +11,9 @@ import javax.inject.Inject
 class GetCoinUseCase @Inject constructor(
     private val repository: CoinRepository
 ) {
-    operator fun invoke(coinId: String): Flow<Resource<CoinDetail>> {
-        return flow {
-            repository.getCoinById(coinId).collect {
-                emit(it)
-            }
+    operator fun invoke(coinId: String): Flow<Resource<CoinDetail>> = flow {
+        repository.getCoinById(coinId).collect {
+            emit(it)
         }
     }
 }
